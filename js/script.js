@@ -1,4 +1,5 @@
 const url = 'http://localhost:8080/users';
+const base_url = 'http://localhost:5500'
 let falae;
 
 /*
@@ -27,7 +28,7 @@ function userCreate() {
         data: body,
         success: (res) => {
             console.log('post done.');
-            taskGetAll();
+            window.location.href = `/index.html`;
         },
         contentType: "application/json",
         dataType: "json"
@@ -36,39 +37,24 @@ function userCreate() {
 
 // Seleciona Usuário
 function userSelect(){
-    const nickmail = $("#lguser-nickmail").val();
+    const email = $("#lguser-email").val();
     const password = $("#lguser-pass").val();
-    var xhr = new XMLHttpRequest();
-    var usuario;
-    xhr.responseType="json"
-    const id=1552;
-
-    for (const f of url) {
-        if (e.email == nickmail || e.nickname == nickmail && e.password==password) {
-            alert(e);
-            console.log('ID: ', e.id);
-            console.log('NICKNAME: ', e.nickname);
-            console.log('EMAIL: ', e.email);
-            console.log('SENHA: ', e.password);
-
-            id=e.id;
-
-        }
-    }
-    xhr.onreadystatechange = function(){
-        // 4 no ajax: Solicitação concluída com resposta
-        //status code 200 retorna aplicação ok
-        if(xhr.readyState==4 && xhr.status == 200){
-            //alert("Retorno de Objeto OK");
-            usuario = xhr.response;
-            usuario = JSON.parse(usuario);
-            console.log(usuario);
-        }else{
-            alert("Erro no retorno do Objeto!");
-        }
-    }
-    xhr.open('GET',url+'/'+id, true);
-    xhr.send();
+    const body = `{"email": "${email}", "password": "${password}"}`;
+    $.ajax({
+        type: "POST",
+        url: url+'/auth',
+        data: body,
+        success: (res) => {
+            console.log('post done.');
+            console.log(res);
+            localStorage.setItem("userId", res.id);
+            localStorage.setItem("userEmail", res.email);
+            localStorage.setItem("userNickname", res.nickname);
+            window.location.href = `/home.html`;
+        },
+        contentType: "application/json",
+        dataType: "json"
+    });
 }
 
 
