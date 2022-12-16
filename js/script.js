@@ -50,7 +50,7 @@ function userSelect(){
             localStorage.setItem("userId", res.id);
             localStorage.setItem("userEmail", res.email);
             localStorage.setItem("userNickname", res.nickname);
-            window.location.href = `/home.html`;
+            window.location.href = '/home.html';
         },
         contentType: "application/json",
         dataType: "json"

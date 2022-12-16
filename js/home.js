@@ -4,6 +4,7 @@ $(document).ready(() => {
 
 
 function getNick() {
+    console.log(213);
     const userNickname = localStorage.getItem("userNickname");
-    $("#nickname").val(userNickname);
+    $("#nickname").html(userNickname);
 }
