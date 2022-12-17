@@ -41,6 +41,42 @@ function postCreate(){
     });
 }
 
+function postCreate(){
+    const comment = $("#comment-home").val();
+    const idUser = localStorage.getItem("userId");
+
+    const body = `{"comment": "${comment}", "user_id": "${idUser}"}`;
+
+    $.ajax({
+        type: "POST",
+        url: url_posts,
+        data: body,
+        success: (res) => {
+            console.log('post done.');
+            window.location.href = `/home.html`;
+        },
+        contentType: "application/json",
+        dataType: "json"
+    });
+}
+
+function answerCreate(idPost, answer){
+    const idUser = localStorage.getItem("userId");
+    const body = `{"comment": "${answer}", "user_id": "${idUser}", "post_id":"${idPost}"}`;
+
+    $.ajax({
+        type: "POST",
+        url: url_answer,
+        data: body,
+        success: (res) => {
+            console.log('answer done.');
+            window.location.href = `/home.html`;
+        },
+        contentType: "application/json",
+        dataType: "json"
+    });
+}
+
 function getAllAnswer(idUser, idPost){
     const ul = $("<ul>");
 
@@ -74,13 +110,16 @@ function getAllPosts(){
     $.getJSON(url_posts, function(data){
         const ul = $("<ul>");
         data.forEach(e => {
+            let answer = 'Resposta vai aqui';
             const li = $("<li>");
             const postArea = $(
-                `<div class="comment"><b>Comentário: </b><br><br>${e.comment}</div>
-                <b>Usuário-Post: </b>${e.user.nickname}<br><br>
+                `<div class="comment"><p><b>Comentário: </b></p>
+                ${e.comment}
+                <p><b>ass: </b>${e.user.nickname}</p></div>
+                <br><br>
                 <div class="answer-area">
-                    <textarea cols=60 id="comment-home" rows="10" name="comment-home" maxlength="500" wrap="hard" placeholder="Deixe seu comentário"></textarea><br>
-                    <button id="hmanswer-btn" onclick="answerCreate()">Responder</button> 
+                    <textarea cols=60 id="answer-home" rows="10" name="answer-home" maxlength="500" wrap="hard" placeholder="Deixe sua resposta"></textarea><br>
+                    <button id="hmanswer-btn" onclick="answerCreate(${e.id}, ${answer})">Responder</button> 
                 </div><br><hr>`
                 );
             ul.append(li.append(postArea.append(getAllAnswer(e.user.id, e.id))));

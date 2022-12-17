@@ -9,20 +9,28 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="js/home.js"></script>
 </head>
-<body>
 
-    <header>
-        <b>NICKNAME:</b> <div class="nickname"></div>
-        <a href="index.html">SAIR</a>
-    <br><br><hr>
-    </header>
-    <div class="content">
-        <h2>FALA Ê!!</h2>
-        <textarea cols=60 id="comment-home" rows="10" name="comment-home" maxlength="500" wrap="hard" placeholder="Deixe seu comentário"></textarea><br>
-        <button id="hmpost-btn" onclick="postCreate()">Postar</button>
-        <hr>
-        <div id="post-list"></div>
-    </div>
-    <footer>FALA Ê | Todos os Direitos reservados</footer>
+<body>
+    <div id="wrapper">
+        <div id="container">
+            <header>
+                <b>Usuário:</b> <div class="nickname"></div>
+                <a href="index.html">SAIR</a>
+            </header>
+            <div id="content">
+                <h2>FALA Ê!!</h2>
+                <textarea cols=60 id="comment-home" rows="10" name="comment-home" maxlength="500" wrap="hard" placeholder="Deixe seu comentário"></textarea><br>
+                <button id="hmpost-btn" onclick="postCreate()">Postar</button>
+                <hr>
+                <div id="post-list"></div>
+            </div><!--content-->
+        </div><!--container-->
+    </div><!--wrapper-->
+
+
+    <footer>
+        FALA Ê | Todos os Direitos reservados
+    </footer>
+
 </body>
 </html>

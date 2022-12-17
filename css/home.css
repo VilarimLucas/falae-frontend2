@@ -1,6 +1,7 @@
 
-.{
+body{
     font-family: 'Montserrat', sans-serif;
+    margin:0;
 }
 
 header, footer{
@@ -9,10 +10,30 @@ header, footer{
     padding: 10px;
 }
 
-.content{
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+#container {
+    overflow: hidden;
+}
+#content {
     background-color:aquamarine;
     padding: 10px;
 }
+header {
+    height: 52px;
+}
+
+header a{
+    float:right;
+}
+header div {
+    width: 1000px;
+    height: 52px;
+    margin: 0 auto;
+}
+
 
 .answer-area{
     background-color:black;
@@ -20,9 +41,12 @@ header, footer{
     padding: 10px;
 }
 
+ul{
+    transform: rotate(180deg);
+}
 
-
-ul li{
+ul > li {
+    transform: rotate(-180deg);
     list-style-type: none;
     padding: 10px;
 }
@@ -41,8 +65,12 @@ textarea{
 }
 
 .comment{
-    padding:5px 20px 10px 20px;
+    padding:5px 20px 5px 20px;
     background-color: cadetblue;
     color:wheat;
     border-radius: 10px;
+}
+
+.comment p{
+    color:aquamarine;
 }
