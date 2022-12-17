@@ -42,21 +42,32 @@ function postCreate(){
 }
 
 function getAllAnswer(idUser, idPost){
-    $.getJSON(url_answer, function(data){
-        const ul = $("<ul>");
-        data.forEach(e => {
-            if(e.user.id === idUser && e.post.id === idPost){
-                const li = $("<li>");
-                const answerArea = $(
-                    `<b>Resposta: </b>${e.comment}<br>
-                    <b><${e.user.nickname}</b>
-                    <hr>`
-                );
-                ul.append(li.append(answerArea));
-            }
-        });
+    const ul = $("<ul>");
+
+    $.ajax({
+        type: "GET",
+        url:url_answer,
+        async: false,
+        sucess:function(res){
+            res.forEach(e => {
+                if(e.user.id === idUser && e.post.id === idPost){
+                    const li = $("<li>");
+                    const answerArea = $(
+                        `<div>
+                        <b>Resposta: </b>${e.comment}<br>
+                        <b><${e.user.nickname}</b><hr>
+                        </div>`
+                    );
+                    ul.append(li.append(answerArea));
+                }
+            });
+        },
+        contentType: "application/json",
+        dataType: "json"
     });
+    return ul;
 }
+
 
 function getAllPosts(){
     $("#post-list").empty();
@@ -70,10 +81,9 @@ function getAllPosts(){
                 <div class="answer-area">
                     <input type="textarea" id="comment-home" placeholder="Deixe uma resposta" />
                     <button id="hmanswer-btn" onclick="answerCreate()">Responder</button> 
-                    <div id="answer-list">${getAllAnswer(e.user.id, e.id)}</div>
                 </div><br><hr>`
                 );
-            ul.append(li.append(postArea));
+            ul.append(li.append(postArea.append(getAllAnswer(e.user.id, e.id))));
         });
         $("#post-list").append(ul);
     });
