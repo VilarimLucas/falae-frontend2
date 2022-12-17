@@ -41,20 +41,39 @@ function postCreate(){
     });
 }
 
+function getAllAnswer(idUser, idPost){
+    $.getJSON(url_answer, function(data){
+        const ul = $("<ul>");
+        data.forEach(e => {
+            if(e.user.id === idUser && e.post.id === idPost){
+                const li = $("<li>");
+                const answerArea = $(
+                    `<b>Resposta: </b>${e.comment}<br>
+                    <b><${e.user.nickname}</b>
+                    <hr>`
+                );
+                ul.append(li.append(answerArea));
+            }
+        });
+    });
+}
+
 function getAllPosts(){
     $("#post-list").empty();
     $.getJSON(url_posts, function(data){
         const ul = $("<ul>");
         data.forEach(e => {
             const li = $("<li>");
-            const postLabel = $(`<label>${e.comment}</label><br><br>`);
-            const userLabel = $(`<label>Usuário-Post: ${e.user.nickname}</label><br><br><hr>`);
-            const answerLabel = $(`<div id="comment-answer"></div><br>Usuário-resposta: <div id="user-answer"></div><br>`);
-            const answerArea = $(
-                `<input type="textarea" id="comment-home" placeholder="Deixe uma resposta" />
-                <button id="hmanswer-btn" onclick="answerCreate()">Responder</button> `
+            const postArea = $(
+                `<b>Comentário: </b><label>${e.comment}</label>
+                <b>Usuário-Post: ${e.user.nickname}</b><br><br>
+                <div class="answer-area">
+                    <input type="textarea" id="comment-home" placeholder="Deixe uma resposta" />
+                    <button id="hmanswer-btn" onclick="answerCreate()">Responder</button> 
+                    <div id="answer-list">${getAllAnswer(e.user.id, e.id)}</div>
+                </div><br><hr>`
                 );
-            ul.append(li.append(postLabel, userLabel, answerLabel, answerArea));
+            ul.append(li.append(postArea));
         });
         $("#post-list").append(ul);
     });
