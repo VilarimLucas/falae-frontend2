@@ -26,3 +26,23 @@ ul li{
     list-style-type: none;
     padding: 10px;
 }
+
+b{
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+textarea{
+    width:400px;
+    height:50px;
+    margin-bottom:5px;
+    color:dimgrey;
+    padding:5px;
+}
+
+.comment{
+    padding:5px 20px 10px 20px;
+    background-color: cadetblue;
+    color:wheat;
+    border-radius: 10px;
+}

@@ -76,10 +76,10 @@ function getAllPosts(){
         data.forEach(e => {
             const li = $("<li>");
             const postArea = $(
-                `<b>Comentário: </b><label>${e.comment}</label>
-                <b>Usuário-Post: ${e.user.nickname}</b><br><br>
+                `<div class="comment"><b>Comentário: </b><br><br>${e.comment}</div>
+                <b>Usuário-Post: </b>${e.user.nickname}<br><br>
                 <div class="answer-area">
-                    <input type="textarea" id="comment-home" placeholder="Deixe uma resposta" />
+                    <textarea cols=60 id="comment-home" rows="10" name="comment-home" maxlength="500" wrap="hard" placeholder="Deixe seu comentário"></textarea><br>
                     <button id="hmanswer-btn" onclick="answerCreate()">Responder</button> 
                 </div><br><hr>`
                 );

@@ -12,13 +12,13 @@
 <body>
 
     <header>
-        <p>NICKNAME: <div class="nickname"></div></p>
+        <b>NICKNAME:</b> <div class="nickname"></div>
         <a href="index.html">SAIR</a>
     <br><br><hr>
     </header>
     <div class="content">
         <h2>FALA Ê!!</h2>
-        <input type="textarea" id="comment-home" placeholder="Deixe seu comentário" />
+        <textarea cols=60 id="comment-home" rows="10" name="comment-home" maxlength="500" wrap="hard" placeholder="Deixe seu comentário"></textarea><br>
         <button id="hmpost-btn" onclick="postCreate()">Postar</button>
         <hr>
         <div id="post-list"></div>
