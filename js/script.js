@@ -1,5 +1,5 @@
 const url = 'http://localhost:8080/users';
-const base_url = 'http://localhost:5500'
+const base_url = 'http://localhost:5500';
 let falae;
 
 /*

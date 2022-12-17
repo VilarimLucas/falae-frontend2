@@ -9,18 +9,21 @@
     <script src="js/home.js"></script>
 </head>
 <body>
-    <p>NICKNAME: </p><div id="nickname"></div>
+
+    <p>NICKNAME: <div class="nickname"></div></p>
+
     <a href="index.html">SAIR</a>
 
     <br><br><hr>
 
-    <h2>Deixe seu Comentário:</h2>
+    <div>
+        <h2>FALA Ê!!</h2>
+        <input type="textarea" id="comment-home" placeholder="Deixe seu comentário" />
+        <button id="hmpost-btn" onclick="postCreate()">Postar</button>
+    </div>
     
-    <form action="">
-        <input type="textarea" />
-        <input type="submit">
-    </form>
+    <hr>
+    <div id="post-list"></div>
     
-
 </body>
 </html>
